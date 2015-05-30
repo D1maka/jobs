@@ -11,7 +11,7 @@ public class Employer {
     @Id
     @Column(name = "idemployer")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(name = "employername")
     @NotNull
@@ -24,11 +24,11 @@ public class Employer {
     public Employer() {
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

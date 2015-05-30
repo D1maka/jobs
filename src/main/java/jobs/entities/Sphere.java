@@ -10,7 +10,7 @@ public class Sphere {
     @Id
     @Column(name = "idsphere")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(name = "spherename")
     private String name;
@@ -18,11 +18,11 @@ public class Sphere {
     public Sphere() {
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

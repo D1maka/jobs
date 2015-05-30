@@ -49,3 +49,21 @@ CREATE TABLE `jobs`.`vacancy` (
     REFERENCES `jobs`.`region` (`idregion`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
+
+INSERT INTO `jobs`.`region` (`idregion`, `regionname`) VALUES (1, 'Kyiv');
+INSERT INTO `jobs`.`region` (`idregion`, `regionname`) VALUES (2, 'Lviv');
+INSERT INTO `jobs`.`region` (`idregion`, `regionname`) VALUES (3, 'Kharkiv');
+INSERT INTO `jobs`.`region` (`idregion`, `regionname`) VALUES (4, 'Dnipropetrovsk');
+INSERT INTO `jobs`.`region` (`idregion`, `regionname`) VALUES (5, 'Poltava');
+INSERT INTO `jobs`.`region` (`idregion`, `regionname`) VALUES (6, 'Lutsk');
+INSERT INTO `jobs`.`region` (`idregion`, `regionname`) VALUES (7, 'Rivne');
+INSERT INTO `jobs`.`region` (`idregion`, `regionname`) VALUES (8, 'Ternopil');
+
+INSERT INTO `jobs`.`sphere` (`idsphere`, `spherename`) VALUES('1', 'IT');
+INSERT INTO `jobs`.`sphere` (`idsphere`, `spherename`) VALUES('2', 'Finance');
+INSERT INTO `jobs`.`sphere` (`idsphere`, `spherename`) VALUES('3', 'Design');
+INSERT INTO `jobs`.`sphere` (`idsphere`, `spherename`) VALUES('4', 'Security');
+INSERT INTO `jobs`.`sphere` (`idsphere`, `spherename`) VALUES('5', 'Science, Education');
+INSERT INTO `jobs`.`sphere` (`idsphere`, `spherename`) VALUES('6', 'Service');
+INSERT INTO `jobs`.`sphere` (`idsphere`, `spherename`) VALUES('7', 'Telecommunication');
+

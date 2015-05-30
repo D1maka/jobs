@@ -10,7 +10,7 @@ public class Vacancy {
     @Id
     @Column(name = "idvacancy")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(name = "title")
     private String title;
@@ -24,20 +24,26 @@ public class Vacancy {
     @Column(name = "offer")
     private String offer;
 
+    @ManyToOne
+    @JoinColumn(name = "locationid")
     private Region region;
 
+    @ManyToOne
+    @JoinColumn(name = "sphereid")
     private Sphere sphere;
 
+    @ManyToOne
+    @JoinColumn(name = "employerid")
     private Employer employer;
 
     public Vacancy() {
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
