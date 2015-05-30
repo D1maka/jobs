@@ -67,3 +67,62 @@ INSERT INTO `jobs`.`sphere` (`idsphere`, `spherename`) VALUES('5', 'Science, Edu
 INSERT INTO `jobs`.`sphere` (`idsphere`, `spherename`) VALUES('6', 'Service');
 INSERT INTO `jobs`.`sphere` (`idsphere`, `spherename`) VALUES('7', 'Telecommunication');
 
+CREATE TABLE `jobs`.`resume` (
+  `idresume` INT NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(500) NOT NULL,
+  `sphereid` INT NOT NULL,
+  `regionid` INT NOT NULL,
+  `salary` DOUBLE NOT NULL,
+  `additionalInformation` VARCHAR(1000) NOT NULL,
+  PRIMARY KEY (`idresume`),
+  INDEX `resume_region_idx` (`regionid` ASC),
+  INDEX `resume_sphere_idx` (`sphereid` ASC),
+  CONSTRAINT `resume_region`
+  FOREIGN KEY (`regionid`)
+  REFERENCES `jobs`.`region` (`idregion`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `resume_sphere`
+  FOREIGN KEY (`sphereid`)
+  REFERENCES `jobs`.`sphere` (`idsphere`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+CREATE TABLE `jobs`.`work_experience` (
+  `idwork_experience` INT NOT NULL AUTO_INCREMENT,
+  `resumeid` INT NOT NULL,
+  `company_name` VARCHAR(500) NOT NULL,
+  `city` VARCHAR(145) NOT NULL,
+  `position` VARCHAR(145) NOT NULL,
+  `sphere` VARCHAR(145) NOT NULL,
+  `start_date` DATE NOT NULL,
+  `end_date` DATE NOT NULL,
+  `additional_information` VARCHAR(1000) NOT NULL,
+  PRIMARY KEY (`idwork_experience`));
+
+ALTER TABLE `jobs`.`work_experience`
+ADD INDEX `experience_resume_idx` (`resumeid` ASC);
+ALTER TABLE `jobs`.`work_experience`
+ADD CONSTRAINT `experience_resume`
+FOREIGN KEY (`resumeid`)
+REFERENCES `jobs`.`resume` (`idresume`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
+CREATE TABLE `jobs`.`eduation` (
+  `ideduation` INT NOT NULL AUTO_INCREMENT,
+  `resumeid` INT NOT NULL,
+  `institution` VARCHAR(300) NOT NULL,
+  `speciality` VARCHAR(300) NOT NULL,
+  `degree` VARCHAR(200) NOT NULL,
+  `city` VARCHAR(100) NOT NULL,
+  `start_date` DATE NOT NULL,
+  `end_date` DATE NOT NULL,
+  `additional_information` VARCHAR(1000) NOT NULL,
+  PRIMARY KEY (`ideduation`),
+  INDEX `education_resume_idx` (`resumeid` ASC),
+  CONSTRAINT `education_resume`
+  FOREIGN KEY (`resumeid`)
+  REFERENCES `jobs`.`resume` (`idresume`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
