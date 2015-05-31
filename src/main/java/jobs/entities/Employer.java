@@ -2,11 +2,14 @@ package jobs.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by dmytro_veres on 28.05.2015.
  */
 @Entity
+@Table(name = "employer")
 public class Employer {
     @Id
     @Column(name = "idemployer")
@@ -20,6 +23,9 @@ public class Employer {
     @Column(name = "description")
     @NotNull
     private String description;
+
+    @OneToMany(mappedBy = "employer")
+    private List<Vacancy> vacancyList = new ArrayList<>();
 
     public Employer() {
     }
@@ -46,5 +52,13 @@ public class Employer {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<Vacancy> getVacancyList() {
+        return vacancyList;
+    }
+
+    public void setVacancyList(List<Vacancy> vacancyList) {
+        this.vacancyList = vacancyList;
     }
 }

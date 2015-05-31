@@ -8,6 +8,7 @@ import java.util.List;
  * Created by dmytro_veres on 28.05.2015.
  */
 @Entity
+@Table(name = "resume")
 public class Resume {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

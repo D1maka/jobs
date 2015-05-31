@@ -7,6 +7,7 @@ import java.util.Date;
  * Created by dmytro_veres on 30.05.2015.
  */
 @Entity
+@Table(name = "education")
 public class Education {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,8 +15,11 @@ public class Education {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "institution")
-    private Resume institution;
+    @JoinColumn(name = "resumeid")
+    private Resume resume;
+
+    @Column(name = "institution")
+    private String institution;
 
     @Column(name = "speciality")
     private String speciality;
@@ -46,11 +50,11 @@ public class Education {
         this.id = id;
     }
 
-    public Resume getInstitution() {
+    public String getInstitution() {
         return institution;
     }
 
-    public void setInstitution(Resume institution) {
+    public void setInstitution(String institution) {
         this.institution = institution;
     }
 
@@ -100,5 +104,13 @@ public class Education {
 
     public void setAdditionalInformation(String additionalInformation) {
         this.additionalInformation = additionalInformation;
+    }
+
+    public Resume getResume() {
+        return resume;
+    }
+
+    public void setResume(Resume resume) {
+        this.resume = resume;
     }
 }

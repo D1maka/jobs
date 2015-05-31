@@ -126,3 +126,45 @@ CREATE TABLE `jobs`.`eduation` (
   REFERENCES `jobs`.`resume` (`idresume`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
+
+CREATE TABLE `jobs`.`vacancy_history` (
+  `idvacancy_history` INT NOT NULL AUTO_INCREMENT,
+  `vacancyid` INT NOT NULL,
+  `resumeid` INT NOT NULL,
+  PRIMARY KEY (`idvacancy_history`),
+  INDEX `vachistory_resume_idx` (`resumeid` ASC),
+  INDEX `vachistory_vacancy_idx` (`vacancyid` ASC),
+  CONSTRAINT `vachistory_resume`
+  FOREIGN KEY (`resumeid`)
+  REFERENCES `jobs`.`resume` (`idresume`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `vachistory_vacancy`
+  FOREIGN KEY (`vacancyid`)
+  REFERENCES `jobs`.`vacancy` (`idvacancy`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+CREATE TABLE `jobs`.`resume_history` (
+  `idresume_history` INT NOT NULL AUTO_INCREMENT,
+  `resumeid` INT NOT NULL,
+  `employerid` INT NOT NULL,
+  PRIMARY KEY (`idresume_history`),
+  INDEX `reshistory_resume_idx` (`resumeid` ASC),
+  INDEX `reshistory_employer_idx` (`employerid` ASC),
+  CONSTRAINT `reshistory_resume`
+  FOREIGN KEY (`resumeid`)
+  REFERENCES `jobs`.`resume` (`idresume`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `reshistory_employer`
+  FOREIGN KEY (`employerid`)
+  REFERENCES `jobs`.`employer` (`idemployer`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+ALTER TABLE `jobs`.`resume_history`
+ADD COLUMN `date` DATE NOT NULL AFTER `employerid`;
+
+ALTER TABLE `jobs`.`vacancy_history`
+ADD COLUMN `date` DATE NOT NULL AFTER `resumeid`;

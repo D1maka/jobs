@@ -6,6 +6,7 @@ import javax.persistence.*;
  * Created by dmytro_veres on 28.05.2015.
  */
 @Entity
+@Table(name = "sphere")
 public class Sphere {
     @Id
     @Column(name = "idsphere")

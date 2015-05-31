@@ -1,5 +1,6 @@
 package jobs;
 
+import jobs.controller.TestController;
 import jobs.entities.Employer;
 import jobs.entities.Region;
 import jobs.entities.Sphere;
@@ -14,39 +15,39 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class JobsApplication implements CommandLineRunner {
+public class JobsApplication {
 
-    @Autowired
-    VacancyRepository vacancyRepository;
-
-    @Autowired
-    EmployerRepository employerRepository;
-
-    @Autowired
-    SphereRepositorry sphereRepositorry;
-
-    @Autowired
-    RegionRepository regionRepository;
+//    @Autowired
+//    VacancyRepository vacancyRepository;
+//
+//    @Autowired
+//    EmployerRepository employerRepository;
+//
+//    @Autowired
+//    SphereRepositorry sphereRepositorry;
+//
+//    @Autowired
+//    RegionRepository regionRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(JobsApplication.class, args);
     }
 
 
-    @Override
-    public void run(String... strings) throws Exception {
-        Region region = regionRepository.findOne(1L);
-        Sphere sphere = sphereRepositorry.findOne(1L);
-        Employer employer = employerRepository.findOne(1L);
-        Vacancy vacancy = new Vacancy();
-        vacancy.setTitle("Test");
-        vacancy.setEmployer(employer);
-        vacancy.setRegion(region);
-        vacancy.setSphere(sphere);
-        vacancy.setDescription("Test");
-        vacancy.setOffer("Test");
-        vacancy.setRequirements("Test");
-
-        vacancyRepository.save(vacancy);
-    }
+//    @Override
+//    public void run(String... strings) throws Exception {
+//        Region region = regionRepository.findOne(1L);
+//        Sphere sphere = sphereRepositorry.findOne(1L);
+//        Employer employer = employerRepository.findOne(1L);
+//        Vacancy vacancy = new Vacancy();
+//        vacancy.setTitle("Test");
+//        vacancy.setEmployer(employer);
+//        vacancy.setRegion(region);
+//        vacancy.setSphere(sphere);
+//        vacancy.setDescription("Test");
+//        vacancy.setOffer("Test");
+//        vacancy.setRequirements("Test");
+//
+//        vacancyRepository.save(vacancy);
+//    }
 }
