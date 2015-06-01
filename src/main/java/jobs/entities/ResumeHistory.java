@@ -15,11 +15,11 @@ public class ResumeHistory {
     private Long id;
 
     @ManyToOne
-    @Column(name = "resumeid")
+    @JoinColumn(name = "resumeid")
     private Resume resume;
 
     @ManyToOne
-    @Column(name = "employerid")
+    @JoinColumn(name = "employerid")
     private Employer employer;
 
     @Column(name = "date")

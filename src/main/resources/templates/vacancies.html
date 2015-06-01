@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" media="screen" href="/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
+    <title></title>
+</head>
+<body>
+<nav id="navbar" class="navbar navbar-inverse">
+    <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="/resumes">My resumes</a></li>
+        <li><a href="/vacancies">Vacancies</a></li>
+        <li><a href="/logout">Logout</a></li>
+    </ul>
+</nav>
+<div class="container">
+    <table class="table">
+        <thead>
+            <th>Title</th>
+            <th>Employer</th>
+            <th>Sphere</th>
+            <th>Location</th>
+        </thead>
+        <tbody>
+            <tr th:each="vacancy : ${vacancies}">
+                <td th:text="${vacancy.title}"/>
+                <td th:text="${vacancy.employer.name}"/>
+                <td th:text="${vacancy.sphere.name}"/>
+                <td th:text="${vacancy.region.name}"/>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
