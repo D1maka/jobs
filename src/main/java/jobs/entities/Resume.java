@@ -38,6 +38,10 @@ public class Resume {
     @OneToMany(mappedBy = "resume")
     private List<WorkExperience> workExperienceList = new ArrayList<>();
 
+    @OneToOne
+    @JoinColumn(name = "userid")
+    private User user;
+
     public Resume() {
     }
 
@@ -103,5 +107,13 @@ public class Resume {
 
     public void setWorkExperienceList(List<WorkExperience> workExperienceList) {
         this.workExperienceList = workExperienceList;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

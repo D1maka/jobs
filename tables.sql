@@ -168,3 +168,56 @@ ADD COLUMN `date` DATE NOT NULL AFTER `employerid`;
 
 ALTER TABLE `jobs`.`vacancy_history`
 ADD COLUMN `date` DATE NOT NULL AFTER `resumeid`;
+
+CREATE TABLE `jobs`.`user` (
+  `iduser` INT NOT NULL AUTO_INCREMENT,
+  `email` VARCHAR(145) NOT NULL,
+  `password_hash` VARCHAR(145) NOT NULL,
+  `role` VARCHAR(145) NOT NULL,
+  PRIMARY KEY (`iduser`));
+
+INSERT INTO `jobs`.`user`
+(`email`,
+ `password_hash`,
+ `role`)
+VALUES
+  ('employee@employee.com',
+   '123',
+   'EMPLOYEE');
+INSERT INTO `jobs`.`user`
+(`email`,
+ `password_hash`,
+ `role`)
+VALUES
+  ('employer@employer.com',
+   '123',
+   'EMPLOYER');
+
+
+ALTER TABLE `jobs`.`employer`
+ADD COLUMN `userid` INT NOT NULL AFTER `description`,
+ADD INDEX `employer_user_idx` (`userid` ASC);
+ALTER TABLE `jobs`.`employer`
+ADD CONSTRAINT `employer_user`
+FOREIGN KEY (`userid`)
+REFERENCES `jobs`.`user` (`iduser`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
+ALTER TABLE `jobs`.`resume`
+ADD COLUMN `userid` INT NOT NULL AFTER `additionalInformation`,
+ADD INDEX `resume_user_idx` (`userid` ASC);
+ALTER TABLE `jobs`.`resume`
+ADD CONSTRAINT `resume_user`
+FOREIGN KEY (`userid`)
+REFERENCES `jobs`.`user` (`iduser`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
+ALTER TABLE `jobs`.`user`
+ADD COLUMN `firstName` VARCHAR(145) NOT NULL AFTER `role`,
+ADD COLUMN `lastName` VARCHAR(145) NOT NULL AFTER `firstName`;
+
+ALTER TABLE `jobs`.`user`
+CHANGE COLUMN `firstName` `first_name` VARCHAR(145) NOT NULL ,
+CHANGE COLUMN `lastName` `last_name` VARCHAR(145) NOT NULL ;

@@ -27,6 +27,10 @@ public class Employer {
     @OneToMany(mappedBy = "employer")
     private List<Vacancy> vacancyList = new ArrayList<>();
 
+    @OneToOne
+    @JoinColumn(name = "userid")
+    private User user;
+
     public Employer() {
     }
 
@@ -60,5 +64,13 @@ public class Employer {
 
     public void setVacancyList(List<Vacancy> vacancyList) {
         this.vacancyList = vacancyList;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

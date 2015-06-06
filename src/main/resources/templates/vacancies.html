@@ -25,8 +25,16 @@
         </thead>
         <tbody>
             <tr th:each="vacancy : ${vacancies}">
-                <td th:text="${vacancy.title}"/>
-                <td th:text="${vacancy.employer.name}"/>
+                <td>
+                    <a th:href="@{/vacancy/{id}(id=${vacancy.id})}">
+                        <label th:text="${vacancy.title}"/>
+                    </a>
+                </td>
+                <td>
+                    <a th:href="@{/employer/{id}(id=${vacancy.employer.id})}">
+                        <label th:text="${vacancy.employer.name}"/>
+                    </a>
+                </td>
                 <td th:text="${vacancy.sphere.name}"/>
                 <td th:text="${vacancy.region.name}"/>
             </tr>
