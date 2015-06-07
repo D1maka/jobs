@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" media="screen" href="/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
+    <title></title>
+</head>
+<body>
+<nav id="navbar-employee" class="navbar navbar-inverse">
+    <ul class="nav navbar-nav">
+        <li><a th:href="@{/vacancies}">Vacancies</a></li>
+        <li><a th:href="@{/my-resumes}">My resumes</a></li>
+        <li><a th:href="@{/my-resumes-history}">My resumes history</a></li>
+        <li><a th:href="@{/logout}">Logout</a></li>
+    </ul>
+</nav>
+<div class="container">
+    <a th:href="@{/new-resume}" class="btn btn-success pull-right">New Resume</a>
+    <table class="table">
+        <thead>
+        <th>Title</th>
+        <th>Sphere</th>
+        <th>Region</th>
+        </thead>
+        <tbody>
+        <tr th:each="resume : ${resumes}">
+            <td>
+                <a th:href="@{/resume/{id}(id=${resume.id})}">
+                    <label th:text="${resume.title}"/>
+                </a>
+            </td>
+            <td th:text="${resume.sphere.name}"/>
+            <td th:text="${resume.region.name}"/>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

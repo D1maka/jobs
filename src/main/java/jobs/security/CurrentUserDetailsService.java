@@ -19,7 +19,6 @@ public class CurrentUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         User user = userService.getUserByEmail(s);
-        System.out.println(user);
         return new CurrentUser(user);
     }
 }

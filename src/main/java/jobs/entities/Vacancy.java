@@ -103,4 +103,18 @@ public class Vacancy {
     public void setEmployer(Employer employer) {
         this.employer = employer;
     }
+
+    @Override
+    public String toString() {
+        return "Vacancy{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", requirements='" + requirements + '\'' +
+                ", offer='" + offer + '\'' +
+                ", region=" + region +
+                ", sphere=" + sphere +
+                ", employer=" + employer +
+                '}';
+    }
 }

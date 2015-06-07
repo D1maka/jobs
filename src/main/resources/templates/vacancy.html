@@ -7,14 +7,26 @@
     <title></title>
 </head>
 <body>
-<nav id="navbar" class="navbar navbar-inverse">
-    <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="/resumes">My resumes</a></li>
-        <li><a href="/vacancies">Vacancies</a></li>
-        <li><a href="/logout">Logout</a></li>
-    </ul>
-</nav>
+<div th:if="${currentUser.isEmployee()} == true">
+    <nav id="navbar-employee" class="navbar navbar-inverse">
+        <ul class="nav navbar-nav">
+            <li><a th:href="@{/vacancies}">Vacancies</a></li>
+            <li><a th:href="@{/my-resumes}">My resumes</a></li>
+            <li><a th:href="@{/my-resumes-history}">My resumes history</a></li>
+            <li><a th:href="@{/logout}">Logout</a></li>
+        </ul>
+    </nav>
+</div>
+<div th:if="${currentUser.isEmployee()} == false">
+    <nav id="navbar-employer" class="navbar navbar-inverse">
+        <ul class="nav navbar-nav">
+            <li><a th:href="@{/vacancies}">Vacancies</a></li>
+            <li><a th:href="@{/my-vacancies}">My Vacancies</a></li>
+            <li><a th:href="@{/my-vacancies-history}">My vacancies history</a></li>
+            <li><a th:href="@{/logout}">Logout</a></li>
+        </ul>
+    </nav>
+</div>
 <div class="container">
     <h1 th:text="${vacancy.title}"></h1>
     <div class="row"><label>Company: </label> <a th:href="@{/employer/{id}(id=${vacancy.employer.id})}"><span th:text="${vacancy.employer.name}"/></a></div>
@@ -22,7 +34,27 @@
     <div class="row"><label>Location: </label> <span th:text="${vacancy.region.name}"/></div>
 
     <h3>Vacancy details</h3>
+    <div class="row"><label>Description: </label> <span th:text="${vacancy.description}"/></div>
+    <div class="row"><label>Requirements: </label> <span th:text="${vacancy.requirements}"/></div>
+    <div class="row"><label>Offer: </label> <span th:text="${vacancy.offer}"/></div>
 
+    <div th:if="${currentUser.isEmployee()} == true">
+        <form id="submit-resume" th:object="${submitResumeForm}" th:action="@{/vacancy/{id}(id=${vacancy.id})}" method="post">
+
+            <div class="form-group">
+                <label for="sphere">Resume: </label>
+                <select id="sphere"  th:field="*{resumeId}">
+                    <option th:each="resume : ${resumes}" th:value="${resume.id}" th:text="${resume.title}"/>
+                </select>
+                <div class="row">
+                    <div>
+                        <input type="submit" class="form-control btn btn-success" value="Submit resume"/>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
+
 </body>
 </html>

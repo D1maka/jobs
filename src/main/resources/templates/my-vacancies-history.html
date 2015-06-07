@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" media="screen" href="/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
+    <title></title>
+</head>
+<body>
+<div th:if="${currentUser.isEmployee()} == true">
+    <nav id="navbar-employee" class="navbar navbar-inverse">
+        <ul class="nav navbar-nav">
+            <li><a th:href="@{/vacancies}">Vacancies</a></li>
+            <li><a th:href="@{/my-resumes}">My resumes</a></li>
+            <li><a th:href="@{/logout}">Logout</a></li>
+        </ul>
+    </nav>
+</div>
+<div th:if="${currentUser.isEmployee()} == false">
+    <nav id="navbar-employer" class="navbar navbar-inverse">
+        <ul class="nav navbar-nav">
+            <li><a th:href="@{/vacancies}">Vacancies</a></li>
+            <li><a th:href="@{/my-vacancies}">My Vacancies</a></li>
+            <li><a th:href="@{/my-vacancies-history}">My vacancies history</a></li>
+            <li><a th:href="@{/logout}">Logout</a></li>
+        </ul>
+    </nav>
+</div>
+<div class="container">
+    <table class="table">
+        <thead>
+        <th>Vacancy</th>
+        <th>Resume</th>
+        <th>Date</th>
+        </thead>
+        <tbody>
+        <tr th:each="history : ${vacancyHistories}">
+            <td>
+                <a th:href="@{/vacancy/{id}(id=${history.vacancy.id})}">
+                    <label th:text="${history.vacancy.title}"/>
+                </a>
+            </td>
+            <td>
+                <a th:href="@{/resume/{id}(id=${history.resume.id})}">
+                    <label th:text="${history.resume.title}"/>
+                </a>
+            </td>
+            <td th:text="${history.date}"/>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

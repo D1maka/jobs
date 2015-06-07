@@ -15,7 +15,7 @@ public class WorkExperience {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "resumeid")
+    @JoinColumn(name = "resumeid", unique = true)
     private Resume resume;
 
     @Column(name = "company_name")

@@ -34,4 +34,12 @@ public class Sphere {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "Sphere{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

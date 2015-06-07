@@ -18,7 +18,7 @@
 <div class="container">
     <h1 th:text="${employer.name}"></h1>
     <div class="row"><label>Description: </label> <span th:text="${employer.description}"/></div>
-
+    <div class="pull-right"><a th:href="@{/vacancies/{id}(id=${employer.id})}">List of vacancies</a> </div>
 </div>
 </body>
 </html>

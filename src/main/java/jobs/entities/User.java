@@ -13,7 +13,7 @@ public class User {
     @Column(name = "iduser")
     private Long id;
 
-    @Column(name = "email")
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
     @Column(name = "password_hash")
@@ -30,6 +30,10 @@ public class User {
     private Role role;
 
     public User() {
+    }
+
+    public boolean isEmployee() {
+        return this.role == Role.EMPLOYEE;
     }
 
     public Long getId() {

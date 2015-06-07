@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" media="screen" href="/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
+    <title></title>
+</head>
+<body>
+<div th:if="${currentUser.isEmployee()} == true">
+    <nav id="navbar-employee" class="navbar navbar-inverse">
+        <ul class="nav navbar-nav">
+            <li><a th:href="@{/vacancies}">Vacancies</a></li>
+            <li><a th:href="@{/my-resumes}">My resumes</a></li>
+            <li><a th:href="@{/my-resumes-history}">My resumes history</a></li>
+            <li><a th:href="@{/logout}">Logout</a></li>
+        </ul>
+    </nav>
+</div>
+<div th:if="${currentUser.isEmployee()} == false">
+    <nav id="navbar-employer" class="navbar navbar-inverse">
+        <ul class="nav navbar-nav">
+            <li><a th:href="@{/vacancies}">Vacancies</a></li>
+            <li><a th:href="@{/my-vacancies}">My Vacancies</a></li>
+            <li><a th:href="@{/my-vacancies-history}">My vacancies history</a></li>
+            <li><a th:href="@{/logout}">Logout</a></li>
+        </ul>
+    </nav>
+</div>
+<div class="container">
+    <h1 th:text="${resume.title}"></h1>
+    <div class="row"><label>Employer: </label> <span th:text="${resume.user.firstName}"/>  <span th:text="${resume.user.lastName}"/></div>
+    <div class="row"><label>Sphere: </label> <span th:text="${resume.sphere.name}"/></div>
+    <div class="row"><label>Location: </label> <span th:text="${resume.region.name}"/></div>
+    <div class="row"><label>Salary: </label> <span th:text="${resume.salary}"/></div>
+    <div class="row"><label>Additional information: </label> <span th:text="${resume.additionalInformation}"/></div>
+
+    <h3>Education</h3>
+    <div class="row"><label>Institution: </label> <span th:text="${resume.education.institution}"/></div>
+    <div class="row"><label>Speciality: </label> <span th:text="${resume.education.speciality}"/></div>
+    <div class="row"><label>City: </label> <span th:text="${resume.education.city}"/></div>
+    <div class="row"><label>Degree: </label> <span th:text="${resume.education.degree}"/></div>
+    <div class="row"><label>Additional information: </label> <span th:text="${resume.education.additionalInformation}"/></div>
+
+    <h3>Previous work</h3>
+    <div class="row"><label>Company: </label> <span th:text="${resume.workExperience.companyName}"/></div>
+    <div class="row"><label>Sphere: </label> <span th:text="${resume.workExperience.sphere}"/></div>
+    <div class="row"><label>City: </label> <span th:text="${resume.workExperience.city}"/></div>
+    <div class="row"><label>Position: </label> <span th:text="${resume.workExperience.position}"/></div>
+    <div class="row"><label>Additional information: </label> <span th:text="${resume.workExperience.additionalInformation}"/></div>
+</div>
+</body>
+</html>

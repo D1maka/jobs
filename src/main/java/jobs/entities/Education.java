@@ -7,15 +7,15 @@ import java.util.Date;
  * Created by dmytro_veres on 30.05.2015.
  */
 @Entity
-@Table(name = "education")
+@Table(name = "eduation")
 public class Education {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ideducation")
+    @Column(name = "ideduation")
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "resumeid")
+    @JoinColumn(name = "resumeid", unique = true)
     private Resume resume;
 
     @Column(name = "institution")

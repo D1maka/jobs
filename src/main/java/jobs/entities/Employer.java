@@ -28,7 +28,7 @@ public class Employer {
     private List<Vacancy> vacancyList = new ArrayList<>();
 
     @OneToOne
-    @JoinColumn(name = "userid")
+    @JoinColumn(name = "userid", nullable = false, unique = true)
     private User user;
 
     public Employer() {

@@ -221,3 +221,9 @@ ADD COLUMN `lastName` VARCHAR(145) NOT NULL AFTER `firstName`;
 ALTER TABLE `jobs`.`user`
 CHANGE COLUMN `firstName` `first_name` VARCHAR(145) NOT NULL ,
 CHANGE COLUMN `lastName` `last_name` VARCHAR(145) NOT NULL ;
+
+ALTER TABLE `jobs`.`user`
+ADD UNIQUE INDEX `email_UNIQUE` (`email` ASC);
+
+ALTER TABLE `jobs`.`resume`
+CHANGE COLUMN `additionalInformation` `additional_information` VARCHAR(1000) NOT NULL ;

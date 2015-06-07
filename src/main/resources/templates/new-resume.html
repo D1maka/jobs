@@ -16,13 +16,101 @@
     </ul>
 </nav>
 <div class="container">
-    <h1 th:text="${vacancy.title}"></h1>
-    <div class="row"><label>Company: </label> <a th:href="@{/employer/{id}(id=${vacancy.employer.id})}"><span th:text="${vacancy.employer.name}"/></a></div>
-    <div class="row"><label>Sphere: </label> <span th:text="${vacancy.sphere.name}"/></div>
-    <div class="row"><label>Location: </label> <span th:text="${vacancy.region.name}"/></div>
+    <h1>New resume</h1>
+    <form th:object="${form}" th:action="@{/new-resume}" method="POST">
+        <div class="form-group" >
+            <label for="title">Title: </label>
+            <input type="text" id="title" th:field="*{title}"/>
+        </div>
+        <div class="form-group" >
+            <label for="salary">Salary: </label>
+            <input type="number" id="salary" th:field="*{salary}"/>
+        </div>
+        <div class="form-group" >
+            <label for="additionalInformation">Additional information: </label>
+            <input type="text" id="additionalInformation" th:field="*{additionalInformation}"/>
+        </div>
+        <div class="form-group">
+            <label for="sphere">Sphere: </label>
+            <select id="sphere"  th:field="*{sphere}">
+                <option th:each="sphere : ${spheres}" th:value="${sphere.id}" th:text="${sphere.name}"/>
+            </select>
+        </div>
+        <div class="form-group" >
+            <label for="region">Region: </label>
+            <select id="region" th:field="*{region}">
+                <option th:each="region : ${regions}" th:value="${region.id}" th:text="${region.name}"/>
+            </select>
+        </div>
 
-    <h3>Vacancy details</h3>
+        <h3>Education</h3>
+        <div class="form-group" >
+            <label for="institution">Institution: </label>
+            <input type="text" id="institution" th:field="*{institution}"/>
+        </div>
+        <div class="form-group" >
+            <label for="speciality">Speciality: </label>
+            <input type="text" id="speciality" th:field="*{speciality}"/>
+        </div>
+        <div class="form-group" >
+            <label for="degree">Degree: </label>
+            <input type="text" id="degree" th:field="*{degree}"/>
+        </div>
+        <div class="form-group" >
+            <label for="institutionCity">Region: </label>
+            <input type="text" id="institutionCity" th:field="*{institutionCity}"/>
+        </div>
+        <!--<div class="form-group" >-->
+            <!--<label for="educationStartYear">Start year: </label>-->
+            <!--<input type="date" id="educationStartYear" th:field="*{educationStartYear}"/>-->
+        <!--</div>-->
+        <!--<div class="form-group" >-->
+            <!--<label for="educationEndYear">End year: </label>-->
+            <!--<input type="date" id="educationEndYear" th:field="*{educationEndYear}"/>-->
+        <!--</div>-->
+        <div class="form-group" >
+            <label for="additionalInformation">Additional information: </label>
+            <input type="text" id="educationAdditional" th:field="*{educationAdditional}"/>
+        </div>
 
+        <h3>Previous work</h3>
+        <div class="form-group" >
+            <label for="companyName">Company name: </label>
+            <input type="text" id="companyName" th:field="*{companyName}"/>
+        </div>
+        <div class="form-group" >
+            <label for="position">Position: </label>
+            <input type="text" id="position" th:field="*{position}"/>
+        </div>
+        <div class="form-group">
+            <label for="workSphere">Sphere: </label>
+            <input type="text" id="workSphere" th:field="*{workSphere}"/>
+        </div>
+        <div class="form-group" >
+            <label for="workRegion">Region: </label>
+            <input type="text" id="workRegion" th:field="*{workRegion}"/>
+        </div>
+        <!--<div class="form-group" >-->
+            <!--<label for="workStartYear">Start year: </label>-->
+            <!--<input type="date" id="workStartYear" th:field="*{workStartYear}"/>-->
+        <!--</div>-->
+        <!--<div class="form-group" >-->
+            <!--<label for="workEndYear">End year: </label>-->
+            <!--<input type="date" id="workEndYear" th:field="*{workEndYear}"/>-->
+        <!--</div>-->
+        <div class="form-group" >
+            <label for="additionalInformation">Additional information: </label>
+            <input type="text" id="workAdditional" th:field="*{workAdditional}"/>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <input type="submit" class="form-control btn btn-success" value="Create"/>
+                </div>
+            </div>
+        </div>
+    </form>
 </div>
 </body>
 </html>

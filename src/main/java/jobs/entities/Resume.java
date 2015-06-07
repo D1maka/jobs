@@ -1,5 +1,8 @@
 package jobs.entities;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,20 +26,20 @@ public class Resume {
     private Sphere sphere;
 
     @ManyToOne
-    @JoinColumn(name = "regonid")
+    @JoinColumn(name = "regionid")
     private Region region;
 
     @Column(name = "salary")
     private Double salary;
 
-    @Column(name = "additionalInformation")
+    @Column(name = "additional_information")
     private String additionalInformation;
 
-    @OneToMany(mappedBy = "resume")
-    private List<Education> educationList = new ArrayList<>();
+    @OneToOne(mappedBy = "resume")
+    private Education education;
 
-    @OneToMany(mappedBy = "resume")
-    private List<WorkExperience> workExperienceList = new ArrayList<>();
+    @OneToOne(mappedBy = "resume")
+    private WorkExperience workExperience;
 
     @OneToOne
     @JoinColumn(name = "userid")
@@ -93,20 +96,20 @@ public class Resume {
         this.additionalInformation = additionalInformation;
     }
 
-    public List<Education> getEducationList() {
-        return educationList;
+    public Education getEducation() {
+        return education;
     }
 
-    public void setEducationList(List<Education> educationList) {
-        this.educationList = educationList;
+    public void setEducation(Education education) {
+        this.education = education;
     }
 
-    public List<WorkExperience> getWorkExperienceList() {
-        return workExperienceList;
+    public WorkExperience getWorkExperience() {
+        return workExperience;
     }
 
-    public void setWorkExperienceList(List<WorkExperience> workExperienceList) {
-        this.workExperienceList = workExperienceList;
+    public void setWorkExperience(WorkExperience workExperience) {
+        this.workExperience = workExperience;
     }
 
     public User getUser() {
