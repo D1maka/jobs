@@ -66,6 +66,7 @@ public class TestController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails = (UserDetails) auth.getPrincipal();
         User user = userService.getUserByEmail(userDetails.getUsername());
+        System.out.println(user.toString());
         model.addAttribute("currentUser", user);
         model.addAttribute("vacancies", vacancyRepository.findAll());
         return "vacancies";
@@ -128,6 +129,11 @@ public class TestController {
 
     @RequestMapping(value = "/employer/{employerId}", method = RequestMethod.GET)
     public String getEmployer(@PathVariable Long employerId, Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        UserDetails userDetails = (UserDetails) auth.getPrincipal();
+        User user = userService.getUserByEmail(userDetails.getUsername());
+
+        model.addAttribute("currentUser", user);
         model.addAttribute("employer", employerRepository.findOne(employerId));
         return "employer";
     }
@@ -135,13 +141,13 @@ public class TestController {
     @RequestMapping(value = "/register-employee", method = RequestMethod.POST)
     public String registerEmployee(@ModelAttribute EmployeeRegistrationFrom employeeRegistrationFrom) {
         userService.create(employeeRegistrationFrom);
-        return "vacancies";
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/register-employer", method = RequestMethod.POST)
     public String registerEmployer(@ModelAttribute EmployerRegistrationForm employerRegistrationForm) {
         userService.create(employerRegistrationForm);
-        return "employer";
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)

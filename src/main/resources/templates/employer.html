@@ -7,14 +7,25 @@
     <title></title>
 </head>
 <body>
-<nav id="navbar" class="navbar navbar-inverse">
-    <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="/resumes">My resumes</a></li>
-        <li><a href="/vacancies">Vacancies</a></li>
-        <li><a href="/logout">Logout</a></li>
-    </ul>
-</nav>
+<div th:if="${currentUser.isEmployee()} == true">
+    <nav id="navbar-employee" class="navbar navbar-inverse">
+        <ul class="nav navbar-nav">
+            <li><a th:href="@{/vacancies}">Vacancies</a></li>
+            <li><a th:href="@{/my-resumes}">My resumes</a></li>
+            <li><a th:href="@{/logout}">Logout</a></li>
+        </ul>
+    </nav>
+</div>
+<div th:if="${currentUser.isEmployee()} == false">
+    <nav id="navbar-employer" class="navbar navbar-inverse">
+        <ul class="nav navbar-nav">
+            <li><a th:href="@{/vacancies}">Vacancies</a></li>
+            <li><a th:href="@{/my-vacancies}">My Vacancies</a></li>
+            <li><a th:href="@{/my-vacancies-history}">My vacancies history</a></li>
+            <li><a th:href="@{/logout}">Logout</a></li>
+        </ul>
+    </nav>
+</div>
 <div class="container">
     <h1 th:text="${employer.name}"></h1>
     <div class="row"><label>Description: </label> <span th:text="${employer.description}"/></div>
