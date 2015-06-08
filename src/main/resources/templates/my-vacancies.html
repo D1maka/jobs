@@ -41,7 +41,6 @@
             <td th:text="${vacancy.sphere.name}"/>
             <td th:text="${vacancy.region.name}"/>
             <td>
-                <span class="glyphicon glyphicon-remove"/>
                 <a th:href="@{/vacancy/delete/{id}(id=${vacancy.id})}">
                     x
                 </a>
